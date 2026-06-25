@@ -2,6 +2,8 @@
 
 A responsive website for **Lotus Detailing**, a car and motorcycle detailing company in Singapore. This is a side project built for practice, with the goal of creating a polished business website that feels realistic, visual, and easy for customers to use.
 
+https://lotusdetailing.vercel.app/
+
 ## Overview
 
 The site presents Lotus Detailing's services, pricing, gallery, customer trust signals, and contact information in a single-page layout. It is designed to help visitors quickly understand what the business offers and make a booking through WhatsApp.

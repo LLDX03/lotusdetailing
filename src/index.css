@@ -1,0 +1,228 @@
+@import "tailwindcss";
+
+/* ============================================================
+   LOTUS DETAILING — "After Dark Garage" design system
+   Nocturnal, wet-gloss neon. Open till 2AM is the brand.
+   ============================================================ */
+
+@theme {
+  --color-ink: #070809;
+  --color-ink-2: #0a0d0e;
+  --color-panel: #0e1314;
+  --color-panel-2: #131a1b;
+  --color-line: rgba(255, 255, 255, 0.07);
+  --color-teal: #0cc5c2;
+  --color-teal-bright: #5af2ee;
+  --color-teal-deep: #0a8e8c;
+  --color-amber: #ffb323;
+  --color-paper: #e8f0f0;
+  --color-muted: #7e8c8c;
+  --color-muted-2: #46514f;
+}
+
+/* Reset kept in @layer base so Tailwind utilities (mx-auto, mb-*, px-*) win. */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #070809;
+  color: #e8f0f0;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(12, 197, 194, 0.3);
+  color: #ffffff;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #070809; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#0cc5c2, #0a8e8c);
+  border-radius: 3px;
+}
+
+/* ---------- Typography ---------- */
+.heading-font {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.03em;
+}
+
+.mono {
+  font-family: 'Space Mono', monospace;
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, #0cc5c2 0%, #5af2ee 50%, #0cc5c2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-glow {
+  text-shadow: 0 0 28px rgba(12, 197, 194, 0.45);
+}
+
+/* ---------- Eyebrow label (unified across sections) ---------- */
+.eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #0cc5c2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+}
+.eyebrow::before {
+  content: '';
+  width: 26px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #0cc5c2);
+}
+
+/* ---------- Surfaces ---------- */
+.panel {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0) 60%), #0e1314;
+  border: 1px solid var(--color-line);
+}
+
+.card-glow { transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease; }
+.card-glow:hover {
+  box-shadow: 0 0 0 1px rgba(12, 197, 194, 0.25), 0 24px 60px rgba(0, 0, 0, 0.55), 0 0 50px rgba(12, 197, 194, 0.1);
+  border-color: rgba(12, 197, 194, 0.35);
+  transform: translateY(-6px);
+}
+
+/* ---------- Buttons ---------- */
+.btn-gold {
+  background: linear-gradient(135deg, #0cc5c2, #5af2ee);
+  color: #04201f;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(12, 197, 194, 0.25);
+}
+.btn-gold::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%);
+  transform: translateX(-120%);
+  transition: transform 0.6s ease;
+}
+.btn-gold:hover::after { transform: translateX(120%); }
+.btn-gold:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 44px rgba(12, 197, 194, 0.5);
+}
+
+.btn-outline {
+  border: 1px solid rgba(12, 197, 194, 0.5);
+  color: #0cc5c2;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(12, 197, 194, 0.04);
+  transition: all 0.3s ease;
+}
+.btn-outline:hover {
+  background: #0cc5c2;
+  color: #04201f;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(12, 197, 194, 0.3);
+}
+
+/* ---------- Hero reflection signature ---------- */
+.hero-reflect {
+  transform: scaleY(-1);
+  opacity: 0.18;
+  filter: blur(1px);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent 75%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent 75%);
+  pointer-events: none;
+  user-select: none;
+  margin-top: -0.18em;
+}
+
+/* gloss sweep that travels across the wordmark on load */
+@keyframes gloss-sweep {
+  0% { background-position: -150% 0; }
+  60%, 100% { background-position: 250% 0; }
+}
+.gloss {
+  background: linear-gradient(
+    100deg,
+    #ffffff 0%,
+    #ffffff 40%,
+    #5af2ee 50%,
+    #ffffff 60%,
+    #ffffff 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gloss-sweep 2.6s ease-out 0.3s both;
+}
+
+/* ambient floor light at the bottom of the hero */
+.floor-glow {
+  background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(12, 197, 194, 0.16), transparent 70%);
+}
+
+/* slow drifting light beam for atmosphere */
+@keyframes beam-drift {
+  0%, 100% { transform: translateX(-8%) rotate(8deg); opacity: 0.5; }
+  50% { transform: translateX(8%) rotate(8deg); opacity: 0.85; }
+}
+.beam {
+  animation: beam-drift 9s ease-in-out infinite;
+}
+
+/* ---------- Marquee (spec bar / reviews ticker) ---------- */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+/* ---------- Gallery slider ---------- */
+.before-after-slider {
+  position: relative;
+  overflow: hidden;
+  cursor: col-resize;
+  user-select: none;
+}
+
+/* ---------- Forms ---------- */
+input, textarea, select { outline: none; }
+input:focus, textarea:focus {
+  border-color: #0cc5c2 !important;
+  box-shadow: 0 0 0 2px rgba(12, 197, 194, 0.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gloss, .beam, .marquee-track { animation: none !important; }
+  .gloss { -webkit-text-fill-color: #ffffff; }
+  * { scroll-behavior: auto !important; }
+}

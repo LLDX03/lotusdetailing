@@ -1,0 +1,8 @@
+export const WA_LINK     = 'https://wa.me/6588675245'
+export const PHONE       = '+65 8867 5245'
+export const EMAIL       = 'lotus.dtling@gmail.com'
+export const ADDRESS     = '62 Lorong 19 Geylang, Singapore 388508'
+export const MAPS_URL    = 'https://maps.google.com/?q=62+Lorong+19+Geylang+Singapore+388508'
+export const INSTAGRAM   = 'https://www.instagram.com/lotus.dtl/'
+export const FACEBOOK    = 'https://www.facebook.com/profile.php?id=61583192065423'
+export const CAROUSELL   = 'https://www.carousell.sg/u/lotus_supply/'

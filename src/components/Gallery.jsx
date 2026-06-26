@@ -2,38 +2,24 @@ import { useState, useRef, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-import shopNight        from '../assets/gallery/shop-night.webp'
-import hondaTypeR       from '../assets/gallery/honda-type-r.webp'
-import audiFinished     from '../assets/gallery/audi-a5-finished.webp'
-import mazdaFinished    from '../assets/gallery/mazda-mx5-finished.webp'
-import mercedesFoam     from '../assets/gallery/mercedes-foam.webp'
-import swiftFoam        from '../assets/gallery/swift-foam-detail.webp'
-import vanFoam          from '../assets/gallery/van-foam.webp'
-import bikeDetail       from '../assets/gallery/bike-detail.webp'
-import paintReflection  from '../assets/gallery/paint-reflection.webp'
-import staffWashing     from '../assets/gallery/staff-washing.webp'
-import nissanClean      from '../assets/gallery/nissan-note-clean.webp'
-import bmwBlue          from '../assets/gallery/bmw-blue-finished.webp'
-import bmwX1            from '../assets/gallery/bmw-x1-finished.webp'
-
 const sliders = [
-  { id: 1, label: 'Exterior Wash', before: mercedesFoam,  after: mazdaFinished },
-  { id: 2, label: 'Signature Detail', before: swiftFoam, after: audiFinished },
+  { id: 1, label: 'Exterior Wash' },
+  { id: 2, label: 'Signature Detail' },
 ]
 
 const gridPhotos = [
-  { src: shopNight,       alt: 'Lotus Detailing shop front at night',              pos: 'center' },
-  { src: hondaTypeR,      alt: 'Honda Civic Type R under the Lotus sign at night', pos: 'bottom' },
-  { src: bikeDetail,      alt: 'Black sports bike being detailed',                 pos: 'center' },
-  { src: vanFoam,         alt: 'Toyota van during foam wash',                      pos: 'center' },
-  { src: nissanClean,     alt: 'Red Nissan Note after detailing',                  pos: 'center' },
-  { src: bmwBlue,         alt: 'Blue BMW after wash and detail',                   pos: 'center' },
-  { src: paintReflection, alt: 'Paint ceramic coating reflection close-up',        pos: 'top'    },
-  { src: bmwX1,           alt: 'White BMW X1 after detailing',                     pos: 'center' },
-  { src: staffWashing,    alt: 'Staff performing foam wash',                       pos: 'center' },
+  'Lotus Detailing shop front at night',
+  'Honda Civic Type R under the Lotus sign at night',
+  'Black sports bike being detailed',
+  'Toyota van during foam wash',
+  'Red Nissan Note after detailing',
+  'Blue BMW after wash and detail',
+  'Paint ceramic coating reflection close-up',
+  'White BMW X1 after detailing',
+  'Staff performing foam wash',
 ]
 
-function BeforeAfterSlider({ before, after, label }) {
+function BeforeAfterSlider({ label }) {
   const [pos, setPos] = useState(50)
   const [dragging, setDragging] = useState(false)
   const containerRef = useRef(null)
@@ -64,11 +50,10 @@ function BeforeAfterSlider({ before, after, label }) {
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
-        <img src={after} alt="After" className="absolute inset-0 w-full h-full object-cover" draggable={false} />
+        <div className="absolute inset-0 w-full h-full bg-white" />
 
         <div className="absolute inset-0 overflow-hidden" style={{ width: `${pos}%` }}>
-          <img src={before} alt="Before" className="absolute inset-0 w-full h-full object-cover"
-            style={{ width: `${10000 / pos}%`, maxWidth: 'none' }} draggable={false} />
+          <div className="absolute inset-0 bg-white" style={{ width: `${10000 / pos}%`, maxWidth: 'none' }} />
         </div>
 
         <div className="absolute top-0 bottom-0 w-0.5 bg-teal shadow-[0_0_18px_rgba(12,197,194,0.7)]" style={{ left: `${pos}%` }}>
@@ -138,22 +123,15 @@ export default function Gallery() {
         </motion.h3>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {gridPhotos.map(({ src, alt, pos }, i) => (
+          {gridPhotos.map((alt, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="relative overflow-hidden rounded-2xl group border border-line aspect-video"
+              className="relative overflow-hidden rounded-2xl group border border-line aspect-video bg-white"
             >
-              <img
-                src={src}
-                alt={alt}
-                loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                style={{ objectPosition: pos }}
-              />
               <div className="absolute inset-0 bg-gradient-to-t from-teal/30 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </motion.div>
           ))}
